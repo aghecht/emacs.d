@@ -515,6 +515,11 @@ Has no effect when `persp-show-modestring' is nil."
   :ensure t
   :defer t)
 
+(use-package scss-mode
+  :ensure t
+  :config
+  (setq scss-compile-at-save nil))
+
 (setq custom-file (expand-file-name "customize.el" user-emacs-directory))
 (load custom-file)
 
