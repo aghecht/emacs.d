@@ -500,6 +500,10 @@ Has no effect when `persp-show-modestring' is nil."
 (use-package markdown-mode
   :ensure t)
 
+(use-package ace-window
+  :ensure t
+  :bind ("s-w" . ace-window))
+
 (use-package ember-mode
   :ensure t
   :defer t)
