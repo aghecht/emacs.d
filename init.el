@@ -273,7 +273,6 @@
 (use-package persp-projectile
   :ensure t
   :defer 1
-  :bind (("C-p s" . projectile-persp-switch-project))
   :config
   (persp-mode)
   (defun persp-format-name (name)
