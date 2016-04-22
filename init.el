@@ -500,6 +500,10 @@ Has no effect when `persp-show-modestring' is nil."
 (use-package markdown-mode
   :ensure t)
 
+(use-package ember-mode
+  :ensure t
+  :defer t)
+
 (setq custom-file (expand-file-name "customize.el" user-emacs-directory))
 (load custom-file)
 
