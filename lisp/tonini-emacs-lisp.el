@@ -1,4 +1,3 @@
-(add-to-list 'load-path "~/Projects/overseer.el/")
 (require 'overseer)
 
 (add-to-list 'auto-mode-alist '("Cask" . emacs-lisp-mode))

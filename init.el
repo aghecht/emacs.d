@@ -193,7 +193,6 @@
   :commands (ag ag-regexp ag-project))
 
 (use-package tester
-  :load-path "~/Projects/tester.el"
   :commands (tester-run-test-file tester-run-test-suite))
 
 (use-package helm-core
@@ -298,7 +297,6 @@ Has no effect when `persp-show-modestring' is nil."
   (helm-projectile-on))
 
 (use-package elixir-mode
-  :load-path "~/Projects/emacs-elixir/"
   :config (progn
 	    (yas-minor-mode +1)
 	    (defun my-elixir-do-end-close-action (id action context)
@@ -323,7 +321,6 @@ Has no effect when `persp-show-modestring' is nil."
 
 (use-package alchemist
   :defer 1
-  :load-path "~/Projects/alchemist.el/"
   :bind (:map alchemist-iex-mode-map
 	      ("C-d" . windmove-right)
 	 :map alchemist-mode-map
