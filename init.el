@@ -96,6 +96,8 @@
 (setq make-backup-files nil)
 (setq create-lockfiles nil)
 
+(setq backup-directory-alist
+      `((".*" ,temporary-file-directory)))
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
 
@@ -173,7 +175,7 @@
 
 (use-package smex
   :ensure t
-  :bind ("M-x" . smex))
+  :bind ("C-x C-m" . smex))
 
 (use-package hl-line
   :init (global-hl-line-mode 1))
@@ -225,21 +227,12 @@
   :ensure t)
 (use-package helm
   :ensure t
-  :bind (("M-a" . helm-M-x)
+  :bind (("M-x" . helm-M-x)
          ("C-x C-f" . helm-find-files)
-         ("C-x f" . helm-recentf)
-         ("C-SPC" . helm-dabbrev)
+         ("C-x b" . helm-mini)
+         ("C-c f" . helm-recentf)
          ("M-y" . helm-show-kill-ring)
-         ("C-x b" . helm-buffers-list))
-  :bind (:map helm-map
-              ("M-i" . helm-previous-line)
-              ("M-k" . helm-next-line)
-              ("M-I" . helm-previous-page)
-              ("M-K" . helm-next-page)
-              ("M-h" . helm-beginning-of-buffer)
-              ("M-H" . helm-end-of-buffer)
-              ("<tab>" . helm-execute-persistent-action)
-              ("C-i" . helm-execute-persistent-action))
+         ("C-x C-b" . helm-buffers-list))
   :config (progn
             (setq helm-buffers-fuzzy-matching t)
             (helm-mode 1)
@@ -262,26 +255,9 @@
                  (window-height   . 0.4)))
   :diminish (helm-mode))
 (use-package helm-descbinds
-  :ensure t
-  :bind ("C-h b" . helm-descbinds))
-(use-package helm-files
-  :bind (:map helm-find-files-map
-              ("M-i" . nil)
-              ("M-k" . nil)
-              ("M-I" . nil)
-              ("M-K" . nil)
-              ("M-h" . nil)
-              ("M-H" . nil)
-              ("M-v" . yank)))
-(use-package helm-swoop
-  :ensure t
-  :bind (("M-m" . helm-swoop)
-         ("M-M" . helm-swoop-back-to-last-point))
-  :init
-  (bind-key "M-m" 'helm-swoop-from-isearch isearch-mode-map))
+  :ensure t)
 (use-package helm-ag
   :ensure helm-ag
-  :bind ("M-p" . helm-projectile-ag)
   :commands (helm-ag helm-projectile-ag)
   :init (setq helm-ag-insert-at-point 'symbol
               helm-ag-command-option "--path-to-agignore ~/.agignore"))
@@ -347,10 +323,6 @@ Has no effect when `persp-show-modestring' is nil."
 
 (use-package alchemist
   :defer 1
-  :bind (:map alchemist-iex-mode-map
-	      ("C-d" . windmove-right)
-	 :map alchemist-mode-map
-	      ("M-w" . alchemist-goto-list-symbol-definitions))
   :config (progn
 	    (setq alchemist-goto-elixir-source-dir "~/Projects/elixir/")
 	    (setq alchemist-goto-erlang-source-dir "~/Projects/otp/")
