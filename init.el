@@ -223,8 +223,6 @@
 (use-package tester
   :commands (tester-run-test-file tester-run-test-suite))
 
-(use-package helm-core
-  :ensure t)
 (use-package helm
   :ensure t
   :bind (("M-x" . helm-M-x)
@@ -299,6 +297,7 @@ Has no effect when `persp-show-modestring' is nil."
   (helm-projectile-on))
 
 (use-package elixir-mode
+  :ensure t
   :config (progn
 	    (yas-minor-mode +1)
 	    (defun my-elixir-do-end-close-action (id action context)
@@ -322,7 +321,7 @@ Has no effect when `persp-show-modestring' is nil."
   :diminish (yas-minor-mode . " YS"))
 
 (use-package alchemist
-  :defer 1
+  :ensure t
   :config (progn
 	    (setq alchemist-goto-elixir-source-dir "~/Projects/elixir/")
 	    (setq alchemist-goto-erlang-source-dir "~/Projects/otp/")
@@ -474,6 +473,14 @@ Has no effect when `persp-show-modestring' is nil."
 (use-package yaml-mode
   :ensure t
   :mode ("\\.ya?ml\\'" . yaml-mode))
+
+(use-package coffee-mode
+  :ensure t
+  :mode (("\\.coffee$'" . coffee-mode)
+         ("\\.coffee\\.erb$" . coffee-mode)
+         ("Cakefile" . coffee-mode))
+  :config (progn
+            (setq coffee-tab-width 2)))
 
 (use-package web-mode
   :ensure t
