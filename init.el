@@ -508,10 +508,12 @@ Has no effect when `persp-show-modestring' is nil."
   :mode (("\\.erb\\'" . web-mode)
          ("\\.mustache\\'" . web-mode)
          ("\\.html?\\'" . web-mode)
+         ("\\.hbs?\\'" . web-mode)
          ("\\.eex\\'" . web-mode)
          ("\\.php\\'" . web-mode))
   :config (progn
-            (setq web-mode-markup-indent-offset 2
+            (setq tab-width 2
+                  web-mode-markup-indent-offset 2
                   web-mode-css-indent-offset 2
                   web-mode-code-indent-offset 2)))
 
