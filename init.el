@@ -33,6 +33,8 @@
 ;; Please don't load outdated byte code
 (setq load-prefer-newer t)
 
+(defconst my-savefile-dir (expand-file-name "savefile" user-emacs-directory))
+
 (defvar tonini-temporary-file-directory (expand-file-name "~/.emacs.d/tmp"))
 (setq backup-directory-alist
       `((".*" . ,temporary-file-directory)))
@@ -111,7 +113,7 @@
 (setq interprogram-cut-function 'paste-to-osx)
 (setq interprogram-paste-function 'copy-from-osx)
 
-(server-start)
+;;(server-start)
 
 ;; Bootstrap `use-package'
 (require 'package)
@@ -144,10 +146,18 @@
   :diminish (smartparens-mode))
 
 (use-package ido
+  :ensure t
   :config
-  (setq ido-enable-flex-matching t)
-  (ido-everywhere t)
-  (ido-mode 1))
+  (setq ido-enable-prefix nil
+        ido-enable-flex-matching t
+        ido-create-new-buffer 'always
+        ido-use-filename-at-point 'guess
+        ido-max-prospects 10
+        ido-save-directory-list-file (expand-file-name "ido.hist" my-savefile-dir)
+        ido-default-file-method 'selected-window
+        ido-auto-merge-work-directories-length -1)
+  (ido-mode +1))
+
 
 (use-package ido-ubiquitous
   :ensure t
