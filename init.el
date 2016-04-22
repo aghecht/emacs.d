@@ -149,6 +149,22 @@
   (ido-everywhere t)
   (ido-mode 1))
 
+(use-package ido-ubiquitous
+  :ensure t
+  :config
+  (ido-ubiquitous-mode +1))
+
+(use-package flx-ido
+  :ensure t
+  :config
+  (flx-ido-mode +1)
+  ;; disable ido faces to see flx highlights
+  (setq ido-use-faces nil))
+
+(use-package smex
+  :ensure t
+  :bind ("M-x" . smex))
+
 (use-package hl-line
   :init (global-hl-line-mode 1))
 
@@ -262,7 +278,8 @@
 
 (use-package projectile
   :ensure t
-  :bind (("C-x p" . projectile-persp-switch-project))
+  :bind (("s-f" . projectile-find-file)
+         ("s-g" . projectile-grep))
   :config
   (setq projectile-completion-system 'helm)
   (projectile-global-mode)
