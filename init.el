@@ -80,7 +80,7 @@
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-(load-theme 'ujelly t)
+(load-theme 'whiteboard t)
 
 ;; `gc-cons-threshold'
 
