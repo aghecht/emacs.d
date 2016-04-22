@@ -13,17 +13,17 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;; write a PID file for the emacs-server
-(setq pidfile "~/.emacsserver.pid")
+;;(setq pidfile "~/.emacsserver.pid")
 
-(add-hook 'emacs-startup-hook
-          (lambda ()
-            (with-temp-file pidfile
-              (insert (number-to-string (emacs-pid))))))
+;;(add-hook 'emacs-startup-hook
+;;          (lambda ()
+;;            (with-temp-file pidfile
+;;              (insert (number-to-string (emacs-pid))))))
 
-(add-hook 'kill-emacs-hook
-          (lambda ()
-            (when (file-exists-p pidfile)
-              (delete-file pidfile))))
+;;(add-hook 'kill-emacs-hook
+;;          (lambda ()
+;;            (when (file-exists-p pidfile)
+;;              (delete-file pidfile))))
 
 ;; `gc-cons-threshold'
 
@@ -57,6 +57,6 @@
 (add-hook 'before-save-hook 'whitespace-cleanup)
 
 ;; Allow this Emacs process to be a server for client processes.
-(server-start)
+;;(server-start)
 
 (provide 'tonini-system)
