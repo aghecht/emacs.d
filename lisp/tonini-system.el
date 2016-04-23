@@ -9,19 +9,6 @@
 ;; enable y/n answers
 (fset 'yes-or-no-p 'y-or-n-p)
 
-;; write a PID file for the emacs-server
-;;(setq pidfile "~/.emacsserver.pid")
-
-;;(add-hook 'emacs-startup-hook
-;;          (lambda ()
-;;            (with-temp-file pidfile
-;;              (insert (number-to-string (emacs-pid))))))
-
-;;(add-hook 'kill-emacs-hook
-;;          (lambda ()
-;;            (when (file-exists-p pidfile)
-;;              (delete-file pidfile))))
-
 ;; `gc-cons-threshold'
 
 ;; http://www.gnu.org/software/emacs/manual/html_node/elisp/Garbage-Collection.html
@@ -52,8 +39,5 @@
 (setq interprogram-paste-function 'copy-from-osx)
 
 (add-hook 'before-save-hook 'whitespace-cleanup)
-
-;; Allow this Emacs process to be a server for client processes.
-;;(server-start)
 
 (provide 'tonini-system)

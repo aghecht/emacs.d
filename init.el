@@ -115,8 +115,6 @@
 (setq interprogram-cut-function 'paste-to-osx)
 (setq interprogram-paste-function 'copy-from-osx)
 
-;;(server-start)
-
 ;; Bootstrap `use-package'
 (require 'package)
 (setq package-enable-at-startup nil)
