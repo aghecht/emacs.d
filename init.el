@@ -511,7 +511,8 @@ Has no effect when `persp-show-modestring' is nil."
 
 (use-package ember-mode
   :ensure t
-  :defer t)
+  :defer t
+  :diminish ember-mode)
 
 (use-package scss-mode
   :ensure t
