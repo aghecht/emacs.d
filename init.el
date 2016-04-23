@@ -173,10 +173,6 @@
   ;; disable ido faces to see flx highlights
   (setq ido-use-faces nil))
 
-(use-package smex
-  :ensure t
-  :bind ("C-x C-m" . smex))
-
 (use-package hl-line
   :init (global-hl-line-mode 1))
 
@@ -225,7 +221,7 @@
 
 (use-package helm
   :ensure t
-  :bind (("M-x" . helm-M-x)
+  :bind (("C-x C-m" . helm-M-x)
          ("C-x C-f" . helm-find-files)
          ("C-x b" . helm-mini)
          ("C-c f" . helm-recentf)
@@ -311,6 +307,10 @@ Has no effect when `persp-show-modestring' is nil."
 			     :when '(("SPC" "RET"))
 			     :post-handlers '(:add my-elixir-do-end-close-action)
 			     :actions '(insert)))))
+
+(use-package smex
+  :ensure t
+  :bind ("M-x" . smex))
 
 (use-package yasnippet
   :ensure t
