@@ -509,7 +509,7 @@ Has no effect when `persp-show-modestring' is nil."
 
 (use-package ace-window
   :ensure t
-  :bind ("s-w" . ace-window))
+  :bind ("C-x o" . ace-window))
 
 (use-package ember-mode
   :ensure t
