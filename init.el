@@ -34,6 +34,8 @@
 (setq load-prefer-newer t)
 
 (defconst my-savefile-dir (expand-file-name "savefile" user-emacs-directory))
+(unless (file-exists-p my-savefile-dir)
+  (make-directory my-savefile-dir))
 
 (defvar tonini-temporary-file-directory (expand-file-name "~/.emacs.d/tmp"))
 (setq backup-directory-alist
