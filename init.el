@@ -156,26 +156,13 @@
   :config
   (setq ido-enable-prefix nil
         ido-enable-flex-matching t
+        ido-everywhere t
         ido-create-new-buffer 'always
         ido-use-filename-at-point 'guess
         ido-max-prospects 10
         ido-save-directory-list-file (expand-file-name "ido.hist" my-savefile-dir)
-        ido-default-file-method 'selected-window
         ido-auto-merge-work-directories-length -1)
   (ido-mode +1))
-
-
-(use-package ido-ubiquitous
-  :ensure t
-  :config
-  (ido-ubiquitous-mode +1))
-
-(use-package flx-ido
-  :ensure t
-  :config
-  (flx-ido-mode +1)
-  ;; disable ido faces to see flx highlights
-  (setq ido-use-faces nil))
 
 (use-package hl-line
   :init (global-hl-line-mode 1))
@@ -223,6 +210,8 @@
 (use-package tester
   :commands (tester-run-test-file tester-run-test-suite))
 
+(use-package helm-core
+  :ensure t)
 (use-package helm
   :ensure t
   :bind (("C-x C-m" . helm-M-x)
@@ -311,10 +300,6 @@ Has no effect when `persp-show-modestring' is nil."
 			     :when '(("SPC" "RET"))
 			     :post-handlers '(:add my-elixir-do-end-close-action)
 			     :actions '(insert)))))
-
-(use-package smex
-  :ensure t
-  :bind ("M-x" . smex))
 
 (use-package yasnippet
   :ensure t
