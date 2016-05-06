@@ -73,6 +73,10 @@
 (setq linum-format " %d ")
 (global-linum-mode)
 
+;; Tabbbing
+(setq-default tab-always-indent'complete)
+(setq-default indent-tabs-mode nil)
+
 (eval
  '(set-display-table-slot standard-display-table
                           'vertical-border
