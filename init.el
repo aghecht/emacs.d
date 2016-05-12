@@ -483,6 +483,10 @@ Has no effect when `persp-show-modestring' is nil."
                   web-mode-css-indent-offset 2
                   web-mode-code-indent-offset 2)))
 
+(use-package ace-window
+  :ensure t
+  :bind ("C-x o" . ace-window))
+
 (use-package whitespace-cleanup-mode
   :ensure t
   :bind (("C-c t c" . whitespace-cleanup-mode)
@@ -495,15 +499,12 @@ Has no effect when `persp-show-modestring' is nil."
 (use-package super-save
   :ensure t
   :config
+  (add-to-list 'super-save-triggers "ace-window")
   (super-save-mode +1)
   :diminish (super-save-mode))
 
 (use-package markdown-mode
   :ensure t)
-
-(use-package ace-window
-  :ensure t
-  :bind ("C-x o" . ace-window))
 
 (use-package ember-mode
   :ensure t
