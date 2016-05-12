@@ -193,7 +193,7 @@
   :init (global-company-mode)
   :config
   (setq company-tooltip-align-annotations t
-	company-idle-delay 0.3
+        company-idle-delay 0.3
         company-tooltip-limit 10
         company-minimum-prefix-length 2
         company-tooltip-flip-when-above t)
@@ -210,8 +210,6 @@
 (use-package tester
   :commands (tester-run-test-file tester-run-test-suite))
 
-(use-package helm-core
-  :ensure t)
 (use-package helm
   :ensure t
   :bind (("C-x C-m" . helm-M-x)
@@ -223,15 +221,15 @@
   :config (progn
             (setq helm-buffers-fuzzy-matching t)
             (helm-mode 1)
-	    (setq helm-split-window-in-side-p           t
-		  helm-buffers-fuzzy-matching           t
-		  helm-move-to-line-cycle-in-source     t
-		  helm-ff-search-library-in-sexp        t
-		  helm-ff-file-name-history-use-recentf t
-		  helm-ag-fuzzy-match                   t)
+            (setq helm-split-window-in-side-p           t
+                  helm-buffers-fuzzy-matching           t
+                  helm-move-to-line-cycle-in-source     t
+                  helm-ff-search-library-in-sexp        t
+                  helm-ff-file-name-history-use-recentf t
+                  helm-ag-fuzzy-match                   t)
 
-	    (substitute-key-definition 'find-tag 'helm-etags-select global-map)
-	    (setq projectile-completion-system 'helm))
+            (substitute-key-definition 'find-tag 'helm-etags-select global-map)
+            (setq projectile-completion-system 'helm))
   ;; Display helm buffers always at the bottom
   ;; Source: http://www.lunaryorn.com/2015/04/29/the-power-of-display-buffer-alist.html
   (add-to-list 'display-buffer-alist
@@ -269,16 +267,16 @@
     "Format the perspective name given by NAME for display in `persp-modestring'."
     (let ((string-name (format "%s" name)))
       (if (equal name (persp-name persp-curr))
-	  (propertize string-name 'face 'persp-selected-face))))
+          (propertize string-name 'face 'persp-selected-face))))
 
   (defun persp-update-modestring ()
     "Update `persp-modestring' to reflect the current perspectives.
 Has no effect when `persp-show-modestring' is nil."
     (when persp-show-modestring
       (setq persp-modestring
-	    (append '("[")
-		    (persp-intersperse (mapcar 'persp-format-name (persp-names)) "")
-		    '("]"))))))
+            (append '("[")
+                    (persp-intersperse (mapcar 'persp-format-name (persp-names)) "")
+                    '("]"))))))
 
 (use-package helm-projectile
   :ensure t
@@ -288,18 +286,18 @@ Has no effect when `persp-show-modestring' is nil."
 (use-package elixir-mode
   :ensure t
   :config (progn
-	    (yas-minor-mode +1)
-	    (defun my-elixir-do-end-close-action (id action context)
-	      (when (eq action 'insert)
-		(newline-and-indent)
-		(forward-line -1)
-		(indent-according-to-mode)))
+            (yas-minor-mode +1)
+            (defun my-elixir-do-end-close-action (id action context)
+              (when (eq action 'insert)
+                (newline-and-indent)
+                (forward-line -1)
+                (indent-according-to-mode)))
 
-	    (sp-with-modes '(elixir-mode)
-	      (sp-local-pair "do" "end"
-			     :when '(("SPC" "RET"))
-			     :post-handlers '(:add my-elixir-do-end-close-action)
-			     :actions '(insert)))))
+            (sp-with-modes '(elixir-mode)
+              (sp-local-pair "do" "end"
+                             :when '(("SPC" "RET"))
+                             :post-handlers '(:add my-elixir-do-end-close-action)
+                             :actions '(insert)))))
 
 (use-package yasnippet
   :ensure t
@@ -312,26 +310,26 @@ Has no effect when `persp-show-modestring' is nil."
 (use-package alchemist
   :ensure t
   :config (progn
-	    (setq alchemist-goto-elixir-source-dir "~/Projects/elixir/")
-	    (setq alchemist-goto-erlang-source-dir "~/Projects/otp/")
-	    (defun tonini-alchemist-mode-hook ()
-	      (tester-init-test-run #'alchemist-mix-test-file "_test.exs$")
-	      (tester-init-test-suite-run #'alchemist-mix-test))
+            (setq alchemist-goto-elixir-source-dir "~/Projects/elixir/")
+            (setq alchemist-goto-erlang-source-dir "~/Projects/otp/")
+            (defun tonini-alchemist-mode-hook ()
+              (tester-init-test-run #'alchemist-mix-test-file "_test.exs$")
+              (tester-init-test-suite-run #'alchemist-mix-test))
             (add-hook 'alchemist-mode-hook 'tonini-alchemist-mode-hook)
 
-	    ;; Display alchemist buffers always at the bottom
-	    ;; Source: http://www.lunaryorn.com/2015/04/29/the-power-of-display-buffer-alist.html
-	    (add-to-list 'display-buffer-alist
-			 `(,(rx bos (or "*alchemist test report*"
-					"*alchemist mix*"
-					"*alchemist help*"
-					"*alchemist elixir*"
-					"*alchemist elixirc*"))
-			   (display-buffer-reuse-window
-			    display-buffer-in-side-window)
-			   (reusable-frames . visible)
-			   (side            . right)
-			   (window-width   . 0.5)))))
+            ;; Display alchemist buffers always at the bottom
+            ;; Source: http://www.lunaryorn.com/2015/04/29/the-power-of-display-buffer-alist.html
+            (add-to-list 'display-buffer-alist
+                         `(,(rx bos (or "*alchemist test report*"
+                                        "*alchemist mix*"
+                                        "*alchemist help*"
+                                        "*alchemist elixir*"
+                                        "*alchemist elixirc*"))
+                           (display-buffer-reuse-window
+                            display-buffer-in-side-window)
+                           (reusable-frames . visible)
+                           (side            . right)
+                           (window-width   . 0.5)))))
 
 (use-package erlang
   :ensure t
@@ -491,6 +489,7 @@ Has no effect when `persp-show-modestring' is nil."
          ("C-c x w" . whitespace-cleanup))
   :init (dolist (hook '(prog-mode-hook text-mode-hook conf-mode-hook))
           (add-hook hook #'whitespace-cleanup-mode))
+        (add-hook 'before-save-hook #'whitespace-cleanup)
   :diminish (whitespace-cleanup-mode))
 
 (use-package markdown-mode
