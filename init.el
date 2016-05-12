@@ -492,6 +492,12 @@ Has no effect when `persp-show-modestring' is nil."
         (add-hook 'before-save-hook #'whitespace-cleanup)
   :diminish (whitespace-cleanup-mode))
 
+(use-package super-save
+  :ensure t
+  :config
+  (super-save-mode +1)
+  :diminish (super-save-mode))
+
 (use-package markdown-mode
   :ensure t)
 
