@@ -37,15 +37,17 @@
 (unless (file-exists-p my-savefile-dir)
   (make-directory my-savefile-dir))
 
-(defvar tonini-temporary-file-directory (expand-file-name "~/.emacs.d/tmp"))
+(setq temporary-file-directory (expand-file-name "~/.emacs.d/tmp"))
 (setq backup-directory-alist
-      `((".*" . ,temporary-file-directory)))
+      `((".*" ,temporary-file-directory)))
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 (require 'tonini-utils)
 (require 'tonini-keybindings)
+
+;; Display setup
 
 (if window-system
     (progn
@@ -55,27 +57,25 @@
       (scroll-bar-mode -1))
   (menu-bar-mode -1))
 
-(when (fboundp 'tool-bar-mode)
-  (tool-bar-mode -1))
-(blink-cursor-mode -1)
-(setq-default cursor-type '(bar . 2))
-(global-hl-line-mode t)
-(delete-selection-mode 1)
-(transient-mark-mode 1)
-(show-paren-mode 1)
-(column-number-mode 1)
 (setq use-dialog-box nil
       visible-bell t
       echo-keystrokes 0.1
       inhibit-startup-message t
       truncate-partial-width-windows nil
-      gnuserv-frame (car (frame-list)))
-(setq linum-format " %d ")
+      gnuserv-frame (car (frame-list))
+      linum-format " %d ")
+
+(when (fboundp 'tool-bar-mode)
+  (tool-bar-mode -1))
+(blink-cursor-mode -1)
+(global-hl-line-mode t)
+(delete-selection-mode 1)
+(transient-mark-mode 1)
+(show-paren-mode 1)
+(column-number-mode 1)
 (global-linum-mode)
 
-;; Tabbbing
-(setq-default tab-always-indent'complete)
-(setq-default indent-tabs-mode nil)
+(setq-default cursor-type '(bar . 2))
 
 (eval
  '(set-display-table-slot standard-display-table
@@ -87,8 +87,13 @@
 (setq inhibit-startup-screen t)
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 (load-theme 'whiteboard t)
+
+;; Tabbing
+(setq-default tab-always-indent 'complete)
+(setq-default indent-tabs-mode nil)
+
+;; System setup
 
 ;; `gc-cons-threshold'
 
@@ -98,16 +103,10 @@
 ;;
 (setq gc-cons-threshold 20000000)
 
-(setq delete-old-versions t)
-(setq make-backup-files nil)
-(setq create-lockfiles nil)
-
-(setq backup-directory-alist
-      `((".*" ,temporary-file-directory)))
-(setq auto-save-file-name-transforms
-      `((".*" ,temporary-file-directory t)))
-
-(setq ring-bell-function 'ignore)
+(setq delete-old-versions t
+      make-backup-files nil
+      create-lockfiles nil
+      ring-bell-function 'ignore)
 
 (defun copy-from-osx ()
   (shell-command-to-string "pbpaste"))
