@@ -33,6 +33,23 @@
 ;; Please don't load outdated byte code
 (setq load-prefer-newer t)
 
+;; Bootstrap `use-package'
+(require 'package)
+(setq package-enable-at-startup nil)
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/"))
+(package-initialize)
+
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(require 'diminish)
+(require 'bind-key)
+
+(eval-and-compile
+  (add-to-list 'load-path (expand-file-name "vendor" user-emacs-directory)))
+
 (defconst my-savefile-dir (expand-file-name "savefile" user-emacs-directory))
 (unless (file-exists-p my-savefile-dir)
   (make-directory my-savefile-dir))
@@ -119,23 +136,6 @@
 
 (setq interprogram-cut-function 'paste-to-osx)
 (setq interprogram-paste-function 'copy-from-osx)
-
-;; Bootstrap `use-package'
-(require 'package)
-(setq package-enable-at-startup nil)
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/"))
-(package-initialize)
-
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-
-(require 'diminish)
-(require 'bind-key)
-
-(eval-and-compile
-  (add-to-list 'load-path (expand-file-name "vendor" user-emacs-directory)))
 
 (use-package smartparens
   :ensure t
@@ -245,6 +245,20 @@
   :commands (helm-ag helm-projectile-ag)
   :init (setq helm-ag-insert-at-point 'symbol
               helm-ag-command-option "--path-to-agignore ~/.agignore"))
+(use-package helm-flycheck
+  :ensure t
+  :defer t
+  :after flycheck)
+
+(use-package ibuffer-vc
+  :disabled t
+  :ensure t
+  :defer t
+  :init (add-hook 'ibuffer-hook
+                  (lambda ()
+                    (ibuffer-vc-set-filter-groups-by-vc-root)
+                    (unless (eq ibuffer-sorting-mode 'alphabetic)
+                      (ibuffer-do-sort-by-alphabetic)))))
 
 (use-package projectile
   :ensure t
@@ -256,6 +270,11 @@
   (helm-projectile-on)
   (setq projectile-enable-caching nil)
   :diminish (projectile-mode))
+
+(use-package ibuffer-projectile          ; Group buffers by Projectile projectile
+  :ensure t
+  :defer t
+  :init (add-hook 'ibuffer-hook #'ibuffer-projectile-set-filter-groups))
 
 (use-package persp-projectile
   :ensure t
@@ -332,7 +351,9 @@ Has no effect when `persp-show-modestring' is nil."
 
 (use-package erlang
   :ensure t
-  :bind (:map erlang-mode-map ("M-," . alchemist-goto-jump-back)))
+  :bind (:map erlang-mode-map ("M-," . alchemist-goto-jump-back))
+  :config
+  (setq erlang-indent-level 2))
 
 (use-package enh-ruby-mode
   :ensure t
@@ -503,7 +524,8 @@ Has no effect when `persp-show-modestring' is nil."
   :diminish (super-save-mode))
 
 (use-package markdown-mode
-  :ensure t)
+  :ensure t
+  :mode ("\\.md\\'" . markdown-mode))
 
 (use-package ember-mode
   :ensure t
