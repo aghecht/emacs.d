@@ -1,10 +1,12 @@
-;;; init.el --- Personal emacs configuration of Samuel Tonini
+;;; init.el --- Personal emacs configuration of Alan Hecht
 
 ;; Copyright © 2014-2016 Samuel Tonini
+;;           © 2016 Alan Hecht
 ;;
 ;; Author: Samuel Tonini <tonini.samuel@gmail.com>
-;; Maintainer: Samuel Tonini <tonini.samuel@gmail.com>
-;; URL: http://www.github.com/tonini/emacs.d
+;;         Alan Hecht <hecht.alan.g@gmail.com>
+;; Maintainer: Alan Hecht <hecht.alan.g@gmail.com>
+;; URL: http://www.github.com/aghecht/emacs.d
 
 ;; This file is not part of GNU Emacs.
 
@@ -23,7 +25,8 @@
 
 ;;; Commentary:
 
-;; Personal Emacs configuration of Samuel Tonini
+;; Personal Emacs configuration of Alan Hecht, derived from
+;; Samuel Tonini's configuration file
 
 ;;; Code:
 
@@ -440,8 +443,7 @@ Has no effect when `persp-show-modestring' is nil."
 (use-package js2-mode
   :ensure t
   :mode (("\\.js\\'" . js2-mode)
-         ("\\.js.erb\\'" . js2-mode)
-         ("\\.jsx\\'" . js2-jsx-mode)))
+         ("\\.js.erb\\'" . js2-mode)))
 
 (use-package js2-refactor
   :ensure t
@@ -539,6 +541,8 @@ Has no effect when `persp-show-modestring' is nil."
 
 (setq custom-file (expand-file-name "customize.el" user-emacs-directory))
 (load custom-file)
+
+(require 'react-mode)
 
 (provide 'init)
 
