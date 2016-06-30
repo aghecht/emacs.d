@@ -173,7 +173,7 @@
   :ensure t
   :defer t
   :init
-  (dolist (hook '(text-mode-hook prog-mode-hook))
+  (dolist (hook '(text-mode-hook prog-mode-hook emacs-lisp-mode-hook))
     (add-hook hook #'rainbow-delimiters-mode)))
 
 (use-package hi-lock
