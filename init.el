@@ -541,8 +541,15 @@ Has no effect when `persp-show-modestring' is nil."
   :config
   (setq scss-compile-at-save nil))
 
+(use-package elm-mode
+  :ensure t
+  :config
+  (add-to-list 'company-backends 'company-elm))
+
 (setq custom-file (expand-file-name "customize.el" user-emacs-directory))
 (load custom-file)
+
+(setenv "NODENV_VERSION" "4.6.1")
 
 (provide 'init)
 
