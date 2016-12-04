@@ -395,7 +395,9 @@ Has no effect when `persp-show-modestring' is nil."
 (use-package rbenv
   :ensure t
   :defer t
-  :init (setq rbenv-show-active-ruby-in-modeline nil)
+  :init (progn
+          (setq rbenv-show-active-ruby-in-modeline nil)
+          (global-rbenv-mode))
   :config (progn
             (global-rbenv-mode)
             (add-hook 'enh-ruby-mode-hook 'rbenv-use-corresponding)))

@@ -1,6 +1,13 @@
 [![License GPL 3][badge-license]](http://www.gnu.org/licenses/gpl-3.0.txt)
 
-# My personal emacs settings
+# Background & Licensing
+
+This code is a derivative work of Samuel Tonini's [Emacs configuration](https://github.com/tonini/emacs.d), which is licensed GPLv3. This code therefore is also licensed under the terms of the GNU Public License, version 3
+
+Copyright © 2016 Samuel Tonini
+Copyright © 2016 Alan Hecht
+
+# Personal emacs settings
 
 After using a prefabricated emacs setup for a long time, I came to the point where I wanted to build
 together my own custom emacs stack.
@@ -15,15 +22,13 @@ There’s also `lisp/` which has my own personal extensions and libraries with c
 ## Requirements
 
 * Emacs 24 or greater.
-* [Tester](https://github.com/tonini/tester.el) Run all tests through the same pipeline.
-* [Karma](https://github.com/tonini/karma.el) Karma Test Runner Emacs Integration.
 
 ## Installation
 
 To install, clone this repo to `~/.emacs.d`, i.e. ensure that the `init.el` contained in this repo ends up at `~/.emacs.d/init.el`:
 
 ```shell
-git clone https://github.com/tonini/emacs.d.git ~/.emacs.d
+git clone https://github.com/aghecht/emacs.d.git ~/.emacs.d
 ```
 
 ## Support
@@ -41,11 +46,5 @@ Contributions are very welcome!
 4. Push to your branch - `git push origin my_branch`
 5. Send me a pull-request for your topic branch
 6. That's it!
-
-## License
-
-Copyright © 2016 Samuel Tonini
-
-Distributed under the GNU General Public License, version 3
 
 [badge-license]: https://img.shields.io/badge/license-GPL_3-green.svg
