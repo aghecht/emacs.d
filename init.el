@@ -544,8 +544,6 @@ Has no effect when `persp-show-modestring' is nil."
 (setq custom-file (expand-file-name "customize.el" user-emacs-directory))
 (load custom-file)
 
-(require 'react-mode)
-
 (provide 'init)
 
 ;;; init.el ends here
