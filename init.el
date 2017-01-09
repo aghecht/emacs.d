@@ -543,8 +543,9 @@ Has no effect when `persp-show-modestring' is nil."
 
 (use-package elm-mode
   :ensure t
-  :config
-  (add-to-list 'company-backends 'company-elm))
+  :config (progn
+            (setq elm-format-on-save t)
+            (add-to-list 'company-backends 'company-elm)))
 
 (setq custom-file (expand-file-name "customize.el" user-emacs-directory))
 (load custom-file)
