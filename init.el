@@ -78,6 +78,8 @@
   (menu-bar-mode -1))
 
 (setq use-dialog-box nil
+      mouse-drag-copy-region t
+      save-interprogram-paste-before-kill t
       visible-bell t
       echo-keystrokes 0.1
       inhibit-startup-message t
@@ -127,18 +129,6 @@
       make-backup-files nil
       create-lockfiles nil
       ring-bell-function 'ignore)
-
-(defun copy-from-osx ()
-  (shell-command-to-string "pbpaste"))
-
-(defun paste-to-osx (text &optional push)
-  (let ((process-connection-type nil))
-    (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
-      (process-send-string proc text)
-      (process-send-eof proc))))
-
-(setq interprogram-cut-function 'paste-to-osx)
-(setq interprogram-paste-function 'copy-from-osx)
 
 (use-package smartparens
   :ensure t
